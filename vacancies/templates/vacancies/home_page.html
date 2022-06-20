@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title%}{{ title }}{% endblock %}
+
+{% block sidebar %}
+{% include '_inc/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content%}
+
+{% for item in vacancies %}
+<div class="card mb-3">
+    <div class="card-header">
+        City: <a href="{{item.city.get_absolute_url}}"> {{item.city.name}} </a>
+    </div>
+    <div class="card-body">
+        <div class="meadia">
+
+            <div class="media-body">
+                <div align="right">
+                    {% include "favorites/add_to_favorites.html" with id=item.id %}
+                </div>
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text">{{item.short}}</p>
+                <a href="{{ item.href}}" class="btn btn-primary">Go to vacancy...</a>
+                 <div align="right">
+                    {% include "favorites/remove_from_favorites.html" with id=item.id %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,9 @@
+django
+django-ckeditor
+django-simple-captcha
+Pillow
+django-debug-toolbar
+django-mptt
+requests
+bs4
+lxml

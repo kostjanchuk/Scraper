@@ -1,0 +1,10 @@
+{% if request.session.favorites %}
+    {% for item in request.session.favorites %}
+        {% if item == id %}
+                <form action="{% url 'favorites:remove_from_favorites' id=id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">x</button>
+                </form>
+        {% endif %}
+    {% endfor %}
+{% endif %}

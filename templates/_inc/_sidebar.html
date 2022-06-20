@@ -1,0 +1,4 @@
+{% load vacancies_tags %}
+{% if request.session.vacancies %}
+    {% show_cities %}
+{% endif%}

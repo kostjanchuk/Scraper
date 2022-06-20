@@ -1,0 +1,38 @@
+
+
+
+{% extends 'base.html' %}
+{% block title%}{{ title }}{% endblock %}
+
+
+
+{% block content%}
+
+{% if request.session.favorites %}
+<form action="{% url 'favorites:delete_favorites' %}" method="post" align="right">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete all</button>
+</form>
+{% endif %}
+
+{% for item in vacancies %}
+<div class="card mb-3">
+    <div class="card-header">
+        City: <a href="{{item.city.get_absolute_url}}"> {{item.city.name}} </a>
+    </div>
+    <div class="card-body">
+        <div class="meadia">
+            <div class="media-body">
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text">{{item.short}}</p>
+                <a href="{{ item.href}}" class="btn btn-primary">Go to vacancy...</a>
+                 <div align="right">
+                    {% include "favorites/remove_from_favorites.html" with id=item.id %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
